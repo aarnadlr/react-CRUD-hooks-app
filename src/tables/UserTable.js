@@ -17,10 +17,10 @@ const UserTable = ({ users, handleDeleteClick, handleEditButton }) => {
       </thead>
       <tbody>
 
-        {users.users ? (
-          users.users.map(userObj => (
+        {users.length ? (
+          users.map(userObj => (
             // Every user gets a ROW: name, username, edit btn, del btn
-            <tr key={userObj.id}>
+            <tr key={userObj._id}>
               <td>{userObj.name}</td>
               <td>{userObj.username}</td>
               <td>
