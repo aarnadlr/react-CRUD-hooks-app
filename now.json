@@ -1,0 +1,7 @@
+{
+  "name": "my-mongodb-api",
+  "version": 2,
+  "env": {
+    "MONGODB_CRUD_URI": "@mongodb-crud-uri"
+  }
+}

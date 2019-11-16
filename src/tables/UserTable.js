@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 const UserTable = ({ users, handleDeleteClick, handleEditButton }) => {
 
+  useEffect(()=>{
+    console.log("users from USERTABLE:", users)
+  });
 
   return (
     <table>
@@ -13,8 +16,9 @@ const UserTable = ({ users, handleDeleteClick, handleEditButton }) => {
         </tr>
       </thead>
       <tbody>
-        {users.length > 0 ? (
-          users.map(userObj => (
+
+        {users.users ? (
+          users.users.map(userObj => (
             // Every user gets a ROW: name, username, edit btn, del btn
             <tr key={userObj.id}>
               <td>{userObj.name}</td>
@@ -39,7 +43,7 @@ const UserTable = ({ users, handleDeleteClick, handleEditButton }) => {
           ))
         ) : (
           <tr>
-            <td colSpan={3}>No users!</td>
+            <td colSpan={3}>Loading...</td>
           </tr>
         )}
       </tbody>

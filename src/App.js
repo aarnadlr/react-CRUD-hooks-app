@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import UserTable from './tables/UserTable';
 import AddUserForm from './forms/addUserForm';
 import EditUserForm from './forms/editUserForm';
+import {useSelector, useDispatch} from 'react-redux';
+import {fetchUsers, addUser} from './redux/actions/userActions'
 
 function App() {
-  const initialUsersData = [
-    { id: 1, name: 'Tania', username: 'floppydiskette' },
-    { id: 2, name: 'Craig', username: 'siliconeidolon' },
-    { id: 3, name: 'Ben', username: 'benisphere' }
-  ];
 
-  const [users, setUsers] = useState(initialUsersData);
+  const dispatch = useDispatch();
+  const users = useSelector(state=>state.users);
+
+  useEffect(()=>{
+    dispatch(fetchUsers())
+  },[]);
+
+  useEffect(()=>{
+    console.log('users.users (array)', users.users)
+  });
 
   // EDITING 1: Whether to swap in the EDIT FORM onto the page!
   const [isEditing, setIsEditing] = useState(false);
@@ -44,18 +50,22 @@ function App() {
     // Map over the users array of user objects.
     // If the ID of any of the current userObjects is the same ID as the just-updated user,
     // add the UPDATED USER to the users array. Else, add the user as before.
-    setUsers(users.map(userObj => (userObj.id === updatedUser.id ? updatedUser : userObj)));
+    // setUsers(users.map(userObj => (userObj.id === updatedUser.id ? updatedUser : userObj)));
+
+    // dispatch(userActions())
   };
 
   const addUser = inputValue => {
     // Change the id value (curr null) to +1 of the current state length
     inputValue.id = users.length + 1;
 
-    setUsers([...users, inputValue]);
+    // setUsers([...users, inputValue]);
+
+
   };
 
   const handleDeleteClick = id => {
-    setUsers(users.filter(userObj => userObj.id !== id));
+    // setUsers(users.filter(userObj => userObj.id !== id));
   };
 
   return (
