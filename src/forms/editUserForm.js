@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState} from 'react';
 
 const EditUserForm = ({handleEditSubmit, userGettingEdited}) => {
 
@@ -12,6 +12,10 @@ const EditUserForm = ({handleEditSubmit, userGettingEdited}) => {
 			[e.target.name]:e.target.value
 		});
 	};
+
+	useEffect(()=>{
+		setUser(userGettingEdited)
+	},[userGettingEdited]);
 
 function _handleEditSubmit(userObj, e) {
 		e.preventDefault();
